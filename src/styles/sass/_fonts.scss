@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Gelion";
+  font-weight: 800;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion Black"), url("@/assets/fonts/Gelion-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gelion";
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion Bold"), url("@/assets/fonts/Gelion-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gelion";
+  font-weight: 600;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion SemiBold"), url("@/assets/fonts/Gelion-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gelion";
+  font-weight: 500;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion Medium"), url("@/assets/fonts/Gelion-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gelion";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion Regular"), url("@/assets/fonts/Gelion-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gelion";
+  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion Light"), url("@/assets/fonts/Gelion-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gelion";
+  font-weight: 200;
+  font-style: normal;
+  font-display: auto;
+  src: local("Gelion Thin"), url("@/assets/fonts/Gelion-Thin.ttf") format("truetype");
+}

@@ -1,0 +1,86 @@
+/* ***************** COLORS ****************** */
+// COLORS
+$color-green-0: #0DBA6A;
+$color-ocean-0: #1B2244;
+$color-blue-0: #254CE3;
+$color-cian-0: #5DD3F0;
+$color-orange-0: #CD7654;
+// BLACK
+$color-black-0: #000000;
+$color-black-1: #101010;
+$color-black-2: #292929;
+$color-black-3: #393939;
+$color-black-4: #737373;
+// WHITE
+$color-white-0: #FFFFFF;
+$color-white-1: #F8F9FD;
+$color-white-2: #EFEFEF;
+$color-white-3: #CACACA;
+$color-white-4: #949CB8;
+
+/* ***************** COLOR SYSTEM ****************** */
+$color-background: $color-white-0;
+$color-text: $color-ocean-0;
+$color-text-dark: $color-black-3;
+$color-text-light: $color-white-4;
+
+
+/* ***************** FONTS ****************** */
+// TYPOGRAPHY
+$font-primary: 'Gelion', Poppins, Helvetica, sans-serif;
+// SIZES
+$h1-size: 81px;
+$h2-size: 64px;
+$h3-size: 56px;
+$h4-size: 48px;
+$h5-size: 36px;
+$h6-size: 32px;
+$b1-size: 26px;
+$b2-size: 21px;
+$b3-size: 16px;
+$b4-size: 14px;
+$b5-size: 12px;
+// WEIGHTS
+$font-heavy: 900;
+$font-black: 800;
+$font-extra-bold: 700;
+$font-bold: 600;
+$font-semi-bold: 500;
+$font-medium: 400;
+$font-regular: 300;
+$font-light: 200;
+$font-thin: 100;
+
+
+/* ***************** Z-INDEX ****************** */
+$z-index-1: 1;
+$z-index-20: 20;
+$z-index-50: 50;
+$z-index-80: 80;
+$z-index-100: 100;
+$z-index-1000: 1000;
+$z-index-2000: 2000;
+$z-index-3000: 3000;
+$z-index-4000: 4000;
+$z-index-5000: 5000;
+
+
+/* ***************** TRANSITION ****************** */
+$transition-fast: 0.1s ease-in-out;
+$transition-normal: 0.2s ease-in-out;
+$transition-slow: 0.3s ease-in-out;
+
+
+/* ***************** BOX SHADOW ****************** */
+$box-shadow-1: 0px 0px 24px rgba(0, 0, 0, 0.07);
+$box-shadow-2: 0px 0px 24px rgba(0, 0, 0, 0.1);
+$box-shadow-3: 0px 0px 24px rgba(0, 0, 0, 0.2);
+
+
+/* ***************** BORDER RADIUS ****************** */
+$border-radius-1: 4px;
+$border-radius-2: 8px;
+$border-radius-3: 16px;
+$border-radius-4: 24px;
+$border-radius-5: 32px;
+$border-radius-6: 40px;
