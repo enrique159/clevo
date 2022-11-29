@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <h4 class="">Home Module {{ $t('General.continue') }}</h4>
+    <div class="d-flex justify-end my-4">
+      <SearchBar :placeholder="$t('General.searchBarPlaceholder')"/>
+      <Avatar size="large" label="EP" shape="circle" class="ml-4"/>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import SearchBar from "@/components/SearchBar/SearchBar.vue";
 import { useMeta } from 'vue-meta'
-
 // Define los metadatos de la página
 useMeta({
   title: 'Inicio',

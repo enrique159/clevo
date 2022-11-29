@@ -7,6 +7,8 @@ import VueTablerIcons from "vue-tabler-icons";
 
 // PRIME VUE COMPONENTS
 import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import Avatar from 'primevue/avatar';
 
 import App from './App.vue'
 import router from './router'
@@ -35,6 +37,8 @@ const app = createApp(App)
 
 // Components
 app.component('Button', Button)
+app.component('InputText', InputText)
+app.component('Avatar', Avatar)
 
 app.use(createPinia())
 app.use(createMetaManager())
