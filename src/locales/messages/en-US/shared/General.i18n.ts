@@ -5,5 +5,7 @@ export default {
     cancel: "Cancel",
     save: "Save",
     searchBarPlaceholder: "Search by name...",
+    signOut: "Sign Out",
+    myAccount: "My Account",
   },
 }

@@ -116,6 +116,7 @@ const selectMenuOption = (option: options) => {
           transition: $transition-normal;
           padding: 0.6rem 0.8rem;
           border-radius: $border-radius-4;
+          cursor: default;
 
           &:hover {
             background-color: $color-white-2;

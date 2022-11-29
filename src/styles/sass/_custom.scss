@@ -1,0 +1,15 @@
+// TIERED MENU PRIME VUE
+.tiered-menu-custom {
+  background-color: $color-white-0 !important;
+  box-shadow: $box-shadow-2 !important;
+  border-radius: $border-radius-2 !important;
+}
+
+// AVATAR PRIME VUE
+.avatar-outline-custom {
+  outline: 2px solid $color-white-1;
+  cursor: pointer;
+  &:hover {
+    outline: 2px solid $color-white-2;
+  }
+}

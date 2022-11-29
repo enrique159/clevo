@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createI18n } from 'vue-i18n'
 import { createMetaManager } from 'vue-meta'
 import PrimeVue from 'primevue/config';
 import VueTablerIcons from "vue-tabler-icons";
@@ -9,6 +8,7 @@ import VueTablerIcons from "vue-tabler-icons";
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Avatar from 'primevue/avatar';
+import TieredMenu from 'primevue/tieredmenu';
 
 import App from './App.vue'
 import router from './router'
@@ -26,12 +26,7 @@ import 'moment/dist/locale/es';
 moment.locale('es')
 
 // Locales
-import { messages, defaultLocale } from "@/locales"
-const i18n = createI18n({
-  messages,
-  locale: defaultLocale,
-  fallbackLocale: defaultLocale,
-})
+import i18n from '@/plugins/i18n'
 
 const app = createApp(App)
 
@@ -39,6 +34,7 @@ const app = createApp(App)
 app.component('Button', Button)
 app.component('InputText', InputText)
 app.component('Avatar', Avatar)
+app.component('TieredMenu', TieredMenu)
 
 app.use(createPinia())
 app.use(createMetaManager())

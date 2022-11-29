@@ -6,8 +6,7 @@
 </template>
 
 <script setup lang="ts">
-
-const { placeholder = '' } = defineProps<{
+const { placeholder = "" } = defineProps<{
   placeholder?: string;
 }>();
 </script>
@@ -15,7 +14,7 @@ const { placeholder = '' } = defineProps<{
 <style lang="scss" scoped>
 .search-bar {
   width: 100%;
-  max-width: 320px;
+  max-width: 290px;
   padding: 12px 12px;
   background-color: $color-white-0;
   display: flex;
@@ -26,6 +25,7 @@ const { placeholder = '' } = defineProps<{
 
   &:focus-within {
     box-shadow: $box-shadow-2;
+    max-width: 320px;
   }
 
   &__input {

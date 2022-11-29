@@ -64,6 +64,21 @@
 .tt-lowercase { text-transform: lowercase; }
 .tt-capitalize { text-transform: capitalize; }
 
+// LINE HEIGHT
+.lh-h1 { line-height: $line-height-h1; }
+.lh-h2 { line-height: $line-height-h2; }
+.lh-h3 { line-height: $line-height-h3; }
+.lh-h4 { line-height: $line-height-h4; }
+.lh-h5 { line-height: $line-height-h5; }
+.lh-h6 { line-height: $line-height-h6; }
+.lh-b1 { line-height: $line-height-b1; }
+.lh-b2 { line-height: $line-height-b2; }
+.lh-b3 { line-height: $line-height-b3; }
+.lh-b4 { line-height: $line-height-b4; }
+.lh-b5 { line-height: $line-height-b5; }
+
+// FONT FAMILY
+.ff-primary { font-family: $font-primary !important; }
 
 // Z-INDEX
 .z-1 { z-index: $z-index-1; }
