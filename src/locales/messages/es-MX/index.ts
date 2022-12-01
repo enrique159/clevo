@@ -4,6 +4,7 @@ import SideBarMenu from "./components/SideBarMenu.i18n"
 
 // pages
 import Regions from "./pages/Regions.i18n"
+import Login from "./pages/Login.i18n"
 
 // shared
 import General from "./shared/General.i18n"
@@ -15,5 +16,6 @@ export default {
   
   // pages
   ...Regions,
+  ...Login,
   ...General,
 }

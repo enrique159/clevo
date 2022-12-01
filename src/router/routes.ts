@@ -2,6 +2,7 @@
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 
 // Modules
+import { LoginRoutes } from "@/views/login/routes";
 import { HomeRoutes } from "@/views/home/routes";
 import { FacturasRoutes } from "@/views/facturas/routes";
 
@@ -16,6 +17,7 @@ const routes = [
       ...FacturasRoutes,
     ]
   },
+  ...LoginRoutes,
   // {
   //   path: "/design-system",
   //   name: "DesignSystem",
