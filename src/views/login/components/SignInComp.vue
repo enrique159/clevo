@@ -1,13 +1,21 @@
 <template>
   <div class="signin-comp">
-    <router-link to="#" class="signin-comp__logo">
-      <img src="@/assets/logo.svg" alt="clevo" />
-    </router-link>
+    <div class="d-flex w-100 justify-between">
+      <router-link
+        to="#"
+        class="signin-comp__logo animate__animated animate__fadeIn"
+      >
+        <img src="@/assets/logo.svg" alt="clevo" />
+      </router-link>
 
-    <div class="signin-comp__form">
-      <h5>{{ $t("Login.SignIn.title") }}</h5>
-      <p class="ts-b3 tw-regular">{{ $t("Login.SignIn.subtitle") }}</p>
-      <form class="signin-form py-6">
+      <LocaleSwitcher />
+    </div>
+
+    <div class="signin-comp__form animate__animated animate__fadeInRight">
+      <h5 class="mb-2 lh-b2">{{ $t("Login.SignIn.title") }}</h5>
+      <p class="ts-b3 tw-regular mb-3">{{ $t("Login.SignIn.subtitle") }}</p>
+      <form class="signin-form">
+        <!-- EMAIL -->
         <span class="p-float-label mb-3">
           <InputText
             id="signInEmail"
@@ -17,7 +25,9 @@
           />
           <label for="signInEmail">{{ $t("Login.SignIn.email") }}</label>
         </span>
-        <span class="p-float-label mb-3">
+
+        <!-- PASSWORD -->
+        <span class="p-float-label">
           <Password
             id="signInPassword"
             v-model="user.password"
@@ -27,21 +37,49 @@
           />
           <label for="signInPassword">{{ $t("Login.SignIn.password") }}</label>
         </span>
-        <Button class="ta-center" type="submit">{{
+
+        <!-- REMEMBER CHECKER -->
+        <div class="d-flex justify-between">
+          <div class="field-checkbox">
+            <Checkbox inputId="binary" v-model="remember" :binary="true" />
+            <label for="binary">{{ $t("Login.SignIn.remember") }}</label>
+          </div>
+
+          <!-- FORGOT PASSWORD -->
+          <router-link to="/forgot-password" class="ts-b3 tw-medium tc-blue-0">
+            {{ $t("Login.SignIn.forgotPassword") }}
+          </router-link>
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <Button class="signin-form__button-login" type="submit">{{
           $t("Login.SignIn.signIn")
         }}</Button>
       </form>
+    </div>
+
+    <!-- DON'T HAVE AN ACCOUNT -->
+    <div class="dont-have-account w-100">
+      <p class="ts-b3 tw-regular">
+        {{ $t("Login.SignIn.dontHaveAccount") }}
+      </p>
+      <router-link to="/signup" class="ts-b3 tw-bold ml-1">
+        {{ $t("Login.SignIn.signUp") }}
+      </router-link>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher.vue";
+import { reactive, ref } from "vue";
 
 const user = reactive({
   email: "",
   password: "",
 });
+
+const remember = ref(false);
 </script>
 
 <style lang="scss" scoped>
@@ -55,9 +93,14 @@ const user = reactive({
   background-color: rgba($color: #fff, $alpha: 0.7);
   border-radius: 26px;
   z-index: 100;
-  padding: 3rem 5rem 3rem 3rem;
+  padding: 3rem;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 
   &__logo {
     display: flex;
@@ -74,27 +117,56 @@ const user = reactive({
     max-width: 360px;
     height: fit-content;
     margin: 0 auto;
-    padding: 16% 0 0 0;
 
     .signin-form {
       width: 100%;
-      height: 100%;
+      height: fit-content;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 1rem 0 0;
       row-gap: 1rem;
+
+      &__button-login {
+        width: 100%;
+        height: 48px;
+        border-radius: $border-radius-3;
+        background-color: $color-blue-0;
+        border: 1px solid $color-blue-0;
+        color: $color-white-0;
+        font-family: $font-primary;
+        font-weight: $font-medium;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        text-align: center;
+        display: inline-block;
+        &:hover {
+          filter: saturate(1.1);
+        }
+      }
+    }
+  }
+  .dont-have-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: $color-blue-0;
     }
   }
 }
 
 @media screen and (max-width: $breakpoint-md) {
   .signin-comp {
+    background-color: rgba($color: #fff, $alpha: 0.5);
     width: 100%;
+    max-width: 100%;
     height: 100%;
     top: 0;
     right: 0;
     border-radius: 0;
+    padding: 3rem 2.5rem;
   }
 }
 </style>

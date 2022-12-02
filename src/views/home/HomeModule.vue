@@ -25,8 +25,12 @@
 
 <script setup lang="ts">
 import SearchBar from "@/components/SearchBar/SearchBar.vue";
+// Composables
 import { useMeta } from "vue-meta";
 import { reactive, ref } from "vue";
+import { useRouter } from 'vue-router';
+import { useUser } from "@/composables/stores/useUser";
+// Plugins
 import i18n from '@/plugins/i18n';
 
 // call useI18n() to get the global component instance
@@ -42,11 +46,20 @@ const avatarProfileMenu = ref<any>(null);
 const items = reactive([
   { label: t("General.myAccount"), icon: "pi pi-fw pi-file" },
   { separator: true },
-  { label: t("General.signOut"), icon: "pi pi-fw pi-power-off" },
+  { label: t("General.signOut"), icon: "pi pi-fw pi-power-off", command: () => logoutUser() },
 ]);
 
 const toggle = (event: any) => {
   avatarProfileMenu.value.toggle(event);
+};
+
+
+// CERRAR SESION
+const { logout } = useUser();
+const router = useRouter();
+const logoutUser = async () => {
+  await logout();
+  router.push({ name: "Login" });
 };
 </script>
 

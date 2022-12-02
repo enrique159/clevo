@@ -23,6 +23,14 @@ export const useUserStore = defineStore({
     },
     setUser(value: User) {
       this.user = value
+    },
+    logout() {
+      this.token = ''
+      this.user = {
+        id: 0,
+        name: '',
+        email: ''
+      }
     }
   }
 })

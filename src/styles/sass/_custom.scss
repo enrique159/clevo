@@ -16,19 +16,11 @@
 
 // INPUT PRIME VUE
 .input-custom {
-  border: 1px solid $color-white-1;
-  border-radius: $border-radius-2;
-  &:focus {
-    border: 1px solid $color-white-2;
-  }
+  @include input-base;
 }
 
 .password-custom {
-  border: 1px solid $color-white-1;
-  border-radius: $border-radius-2;
-  &:focus {
-    border: 1px solid $color-white-2;
-  }
+  @include input-base; 
   .p-password-input {
     border: none;
     background-color: $color-white-0;

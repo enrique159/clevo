@@ -15,6 +15,10 @@ export const useUser = () => {
     userStore.setToken(value)
   };
 
+  const logout = () => {
+    userStore.logout()
+  };
+
   return {
     // Properties
     user,
@@ -22,5 +26,6 @@ export const useUser = () => {
     // Methods
     setUser,
     setToken,
+    logout
   };
 }

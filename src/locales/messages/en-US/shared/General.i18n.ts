@@ -7,5 +7,7 @@ export default {
     searchBarPlaceholder: "Search by name...",
     signOut: "Sign Out",
     myAccount: "My Account",
+    spanish: "Spanish",
+    english: "English",
   },
 }

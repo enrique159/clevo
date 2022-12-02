@@ -7,5 +7,7 @@ export default {
     searchBarPlaceholder: "Buscar por nombre...",
     signOut: "Cerrar sesión",
     myAccount: "Mi cuenta",
+    spanish: "Español",
+    english: "Inglés",
   },
 }

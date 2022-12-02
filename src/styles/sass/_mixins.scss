@@ -1,0 +1,8 @@
+@mixin input-base {
+  border: 1px solid $color-white-1;
+  border-radius: $border-radius-2;
+  font-family: $font-primary;
+  &:focus {
+    border: 1px solid $color-white-2;
+  }
+}
