@@ -23,10 +23,14 @@
 <script setup lang="ts">
 import i18n from "@/plugins/i18n";
 import { Locales } from "@/locales/locales.d";
+import { useApp } from "@/composables/stores/useApp";
 import { computed } from "vue";
+
+const { locale, setLocale } = useApp();
 
 const changeLocale = (locale: Locales) => {
   i18n.global.locale = locale;
+  setLocale(locale);
 };
 
 const currentLocale = computed(() => i18n.global.locale);
@@ -53,6 +57,7 @@ const currentLocale = computed(() => i18n.global.locale);
 
   &__button--active {
     color: $color-black-3;
+    font-weight: $font-bold;
   }
 
   &__divider {

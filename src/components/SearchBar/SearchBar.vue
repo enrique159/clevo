@@ -51,4 +51,18 @@ const { placeholder = "" } = defineProps<{
     }
   }
 }
+
+@media only screen and (max-width: $breakpoint-sm) {
+  .search-bar {
+    max-width: 200px;
+    background-color: transparent;
+    box-shadow: none;
+
+    &:focus-within {
+      box-shadow: none;
+      background-color: $color-white-2;
+      max-width: 220px;
+    }
+  }
+}
 </style>

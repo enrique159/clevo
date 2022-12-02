@@ -8,13 +8,18 @@ export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => ({
     rememberSession: useLocalStorage('rememberSession', 'false'),
+    locale: useLocalStorage('locale', 'es-MX'),
   }),
   getters: {
     getRememberSession: (state) => state.rememberSession == 'true',
+    getLocale: (state) => state.locale,
   },
   actions: {
     setRememberSession(value: boolean) {
       this.rememberSession = value.toString()
+    },
+    setLocale(value: string) {
+      this.locale = value
     }
   }
 })

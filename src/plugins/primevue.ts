@@ -6,6 +6,7 @@ import TieredMenu from 'primevue/tieredmenu';
 import Checkbox from 'primevue/checkbox';
 import Tooltip from 'primevue/tooltip';
 import Divider from 'primevue/divider';
+import Sidebar from 'primevue/sidebar';
 
 export const PrimeVueConf = (app: any) => {
   app.component('Button', Button)
@@ -16,4 +17,5 @@ export const PrimeVueConf = (app: any) => {
   app.component('Checkbox', Checkbox)
   app.directive('tooltip', Tooltip)
   app.component('Divider', Divider)
+  app.component('Sidebar', Sidebar)
 }

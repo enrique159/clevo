@@ -12,6 +12,7 @@
 .bg-green-0 { background-color: $color-green-0; }
 .bg-orange-0 { background-color: $color-orange-0; }
 .bg-blue-0 { background-color: $color-blue-0; }
+.bg-blue-1 { background-color: $color-blue-1; }
 .bg-cian-0 { background-color: $color-cian-0; }
 .bg-ocean-0 { background-color: $color-ocean-0; }
 
@@ -29,6 +30,7 @@
 .tc-green-0 { color: $color-green-0; }
 .tc-orange-0 { color: $color-orange-0; }
 .tc-blue-0 { color: $color-blue-0; }
+.tc-blue-1 { color: $color-blue-1; }
 .tc-cian-0 { color: $color-cian-0; }
 .tc-ocean-0 { color: $color-ocean-0; }
 
@@ -106,13 +108,13 @@
 
 
 // BORDER RADIUS
-.br-0 { border-radius: 0; }
-.br-1 { border-radius: $border-radius-1; }
-.br-2 { border-radius: $border-radius-2; }
-.br-3 { border-radius: $border-radius-3; }
-.br-4 { border-radius: $border-radius-4; }
-.br-5 { border-radius: $border-radius-5; }
-.br-6 { border-radius: $border-radius-6; }
+.br-0 { border-radius: 0 !important; }
+.br-1 { border-radius: $border-radius-1 !important; }
+.br-2 { border-radius: $border-radius-2 !important; }
+.br-3 { border-radius: $border-radius-3 !important; }
+.br-4 { border-radius: $border-radius-4 !important; }
+.br-5 { border-radius: $border-radius-5 !important; }
+.br-6 { border-radius: $border-radius-6 !important; }
 
 
 // POSITION

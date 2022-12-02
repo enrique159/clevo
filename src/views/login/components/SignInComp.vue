@@ -3,7 +3,7 @@
     <div class="d-flex w-100 justify-between">
       <router-link
         to="#"
-        class="signin-comp__logo animate__animated animate__fadeIn"
+        class="signin-comp__logo"
       >
         <img src="@/assets/logo.svg" alt="clevo" />
       </router-link>
@@ -11,10 +11,10 @@
       <LocaleSwitcher />
     </div>
 
-    <div class="signin-comp__form animate__animated animate__fadeInRight">
+    <div class="signin-comp__form">
       <h5 class="mb-2 lh-b2">{{ $t("Login.SignIn.title") }}</h5>
       <p class="ts-b3 tw-regular mb-3">{{ $t("Login.SignIn.subtitle") }}</p>
-      <form class="signin-form">
+      <form class="signin-form" @submit.prevent="validateForm">
         <!-- EMAIL -->
         <span class="p-float-label mb-3">
           <InputText
@@ -41,7 +41,7 @@
         <!-- REMEMBER CHECKER -->
         <div class="d-flex justify-between">
           <div class="field-checkbox">
-            <Checkbox inputId="binary" v-model="remember" :binary="true" />
+            <Checkbox inputId="binary" v-model="rememberSession" :binary="true" />
             <label for="binary">{{ $t("Login.SignIn.remember") }}</label>
           </div>
 
@@ -73,13 +73,26 @@
 <script setup lang="ts">
 import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher.vue";
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import { useMeta } from "vue-meta";
+import { useApp } from "@/composables/stores/useApp";
+
+useMeta({
+  title: "Inicia sesión",
+  htmlAttrs: { lang: "en", amp: true },
+});
 
 const user = reactive({
   email: "",
   password: "",
 });
 
-const remember = ref(false);
+const { rememberSession } = useApp();
+
+const router = useRouter();
+const validateForm = () => {
+  router.push("/home");
+}
 </script>
 
 <style lang="scss" scoped>
