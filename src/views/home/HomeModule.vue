@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <HeaderComp />
-    <HomeOptionsComp />
+    <HomeOptionsComp class="mb-3" />
     <BannerComp />
   </div>
 </template>

@@ -32,7 +32,10 @@
 
 // AVATAR PRIME VUE
 .avatar-outline-custom {
+  background-color: $color-white-4;
   border: 2px solid $color-white-1;
+  color: $color-white-0;
+  line-height: 10px;
   cursor: pointer;
   &:hover {
     border: 2px solid $color-cian-0;

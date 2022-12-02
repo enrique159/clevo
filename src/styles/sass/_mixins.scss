@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+// DISPLAY FLEX CENTER
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 // INPUT BASE: Este mixin es para los inputs de tipo texto, email, password, etc.
 @mixin input-base {
@@ -21,4 +28,5 @@
 @mixin button-base {
   border-radius: $border-radius-2;
   font-family: $font-primary;
+  font-weight: $font-medium;
 }
