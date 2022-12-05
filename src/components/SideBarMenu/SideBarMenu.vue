@@ -24,6 +24,12 @@
           </router-link>
         </li>
         <li>
+          <router-link to="/" :class="{ active: menu.products }" @click="selectMenuOption('products')">
+            <ProductsIcon class="icon" :white="menu.products" />
+            <span>{{ $t('SideBarMenu.products') }}</span>
+          </router-link>
+        </li>
+        <li>
           <router-link to="/" :class="{ active: menu.sales }" @click="selectMenuOption('sales')">
             <SalesIcon class="icon" :white="menu.sales" />
             <span>{{ $t('SideBarMenu.sales') }}</span>
@@ -78,6 +84,12 @@
           </router-link>
         </li>
         <li>
+          <router-link to="/" :class="{ active: menu.products }" @click="selectMenuOption('products')">
+            <ProductsIcon class="icon" :white="menu.products" />
+            <span>{{ $t('SideBarMenu.products') }}</span>
+          </router-link>
+        </li>
+        <li>
           <router-link to="/" :class="{ active: menu.sales }" @click="selectMenuOption('sales')">
             <SalesIcon class="icon" :white="menu.sales" />
             <span>{{ $t('SideBarMenu.sales') }}</span>
@@ -109,18 +121,20 @@ import LocaleSwitcher from '@/components/LocaleSwitcher/LocaleSwitcher.vue';
 import HomeIcon from "@/assets/custom/HomeIcon.vue";
 import BillsIcon from "@/assets/custom/BillsIcon.vue";
 import ClientsIcon from "@/assets/custom/ClientsIcon.vue";
+import ProductsIcon from "@/assets/custom/ProductsIcon.vue";
 import SalesIcon from "@/assets/custom/SalesIcon.vue";
 import CoinsIcon from "@/assets/custom/CoinsIcon.vue";
 import SettingsIcon from "@/assets/custom/SettingsIcon.vue";
 import { reactive, ref } from "vue";
 
-type options = 'home' | 'bills' | 'clients' | 'sales' | 'coins' | 'settings';
+type options = 'home' | 'bills' | 'clients' | 'products' | 'sales' | 'coins' | 'settings';
 
 const toggleMenu = ref(false);
 const menu = reactive({
   home: true,
   bills: false,
   clients: false,
+  products: false,
   sales: false,
   coins: false,
   settings: false,
@@ -130,6 +144,7 @@ const selectMenuOption = (option: options) => {
   menu.home = false;
   menu.bills = false;
   menu.clients = false;
+  menu.products = false;
   menu.sales = false;
   menu.coins = false;
   menu.settings = false;
