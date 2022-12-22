@@ -1,3 +1,3 @@
-import { Auth } from './Auth'
+import { Auth, AuthResponse, IsAuth } from './Auth'
 
-export type { Auth }
+export type { Auth, AuthResponse, IsAuth }

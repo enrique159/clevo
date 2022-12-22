@@ -2,7 +2,7 @@ import { User } from "@/app/modules/Users/domain/interfaces";
 import { IPayload, Response } from "@/app/network/domain/interfaces";
 import Http from "@/app/network/Http";
 import { Auth } from "../domain/interfaces";
-import { IsAuth } from "../domain/interfaces/Auth";
+import { AuthResponse, IsAuth } from "../domain/interfaces/Auth";
 import { AuthRepositoryModel } from "../domain/services/AuthRepositoryModel";
 
 export class AuthRepository implements AuthRepositoryModel {
@@ -12,8 +12,8 @@ export class AuthRepository implements AuthRepositoryModel {
     this.http = new Http();
   }
 
-  signIn(payload: IPayload<Auth>): Promise<Response<User>> {
-    return this.http.post<Auth, User>("/auth/signin", payload)
+  signIn(payload: IPayload<Auth>): Promise<Response<AuthResponse>> {
+    return this.http.post<Auth, AuthResponse>("/auth/signin", payload)
   }
 
   async isAuth(): Promise<Response<User>> {

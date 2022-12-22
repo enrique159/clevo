@@ -5,10 +5,12 @@ import { SignInUseCase } from "@/app/auth/useCases/SignIn.useCase";
 import { AuthRepository } from "@/app/auth/repository/AuthRepository";
 import { Auth } from "@/app/auth/domain/interfaces";
 import { IsAuthUseCase } from "@/app/auth/useCases/IsAuth.useCase";
+import { useLocalStorage } from "@vueuse/core";
  
 export const useUserStore = defineStore({
   id: 'user',
   state: (): UserState => ({
+    token: useLocalStorage('token', ''),
     user: {
       _id: '',
       name: '',
@@ -18,12 +20,19 @@ export const useUserStore = defineStore({
   }),
   getters: {
     getUser: (state) => state.user,
+    getToken: (state) => state.token
   },
   actions: {
     setUser(value: User) {
       this.user = value
     },
+    setToken(value: string) {
+      this.token = value
+    },
+
+    // LOGOUT
     logout() {
+      this.token = ''
       this.user = {
         _id: '',
         name: '',
@@ -38,7 +47,8 @@ export const useUserStore = defineStore({
       const signInUseCase = new SignInUseCase(authRepository);
       const action = signInUseCase.execute(credentials)
       action.then((response) => {
-        this.user = response.data
+        this.setUser(response.data.user)
+        this.setToken(response.data.token)
         return response
       }).catch((error) => {
         console.log('Error ❗️:', error.errors)

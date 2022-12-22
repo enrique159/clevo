@@ -10,15 +10,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const { user } = useUser();
-  if (to.meta.requiresAuth) {
-    if (!user.value._id) next({ name: "Login" });
-    next();
-  } else {
-    if (to.name === "Login") {
-      if (user.value._id) next({ name: "Home" });
-    }
-    next();
+  const { validateToken } = useUser();
+  if (to.name === "Login" && validateToken()) {
+    next({ name: "Home" });
+  }
+  else if (to.meta.requiresAuth && !validateToken()) {
+    next({ name: "Login" });
+  }
+  else {
+    next()
   }
 })
 

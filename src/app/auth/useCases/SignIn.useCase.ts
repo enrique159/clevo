@@ -1,13 +1,13 @@
 import { User } from "@/app/modules/Users/domain/interfaces";
 import { IPayload, Response } from "@/app/network/domain/interfaces";
 import { BaseUseCase } from "@/app/shared/common/BaseUseCase";
-import { Auth } from "../domain/interfaces";
+import { Auth, AuthResponse } from "../domain/interfaces";
 import { AuthRepositoryModel } from "../domain/services/AuthRepositoryModel";
 
-export class SignInUseCase implements BaseUseCase<Auth, Promise<Response<User>>> {
+export class SignInUseCase implements BaseUseCase<Auth, Promise<Response<AuthResponse>>> {
   constructor(private readonly authRepository: AuthRepositoryModel) {}
 
-  async execute(credentials: Auth): Promise<Response<User>> {
+  async execute(credentials: Auth): Promise<Response<AuthResponse>> {
     const payload: IPayload<Auth> = {
       data: credentials,
       auth: false,
