@@ -25,7 +25,7 @@ export class UsersRepository implements UsersRepositoryModel {
   }
 
   update(payload: IPayload<User>): Promise<Response<User>> {
-    return this.http.put(`/users/${payload.data?.id}`, payload)
+    return this.http.put(`/users/${payload.data?._id}`, payload)
   }
 
   delete(id: number): Promise<Response<User>> {
