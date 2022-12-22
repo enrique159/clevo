@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { createMetaManager } from 'vue-meta'
+import VueGates from 'vue-gates'
 import PrimeVue from 'primevue/config';
 import VueTablerIcons from "vue-tabler-icons";
 import App from './App.vue'
@@ -32,6 +33,7 @@ const app = createApp(App)
 PrimeVueConf(app)
 app.use(createPinia())
 app.use(createMetaManager())
+app.use(VueGates as any)
 app.use(PrimeVue)
 app.use(VueTablerIcons)
 app.use(router)

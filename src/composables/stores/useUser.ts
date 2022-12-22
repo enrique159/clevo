@@ -1,31 +1,36 @@
 import { storeToRefs } from "pinia";
 import { useUserStore } from "@/stores/userStore";
 
-import type { User } from "@/types/User.type";
+import { User } from '@/app/modules/Users/domain/interfaces'
+import { Auth } from "@/app/auth/domain/interfaces";
 
 export const useUser = () => {
   const userStore = useUserStore();
-  const { user, token } = storeToRefs(userStore);
+  const { user } = storeToRefs(userStore);
 
   const setUser = (value: User) => {
     user.value = value
-  };
-
-  const setToken = (value: string) => {
-    userStore.setToken(value)
   };
 
   const logout = () => {
     userStore.logout()
   };
 
+  const signIn = (credentials: Auth) => {
+    return userStore.signIn(credentials)
+  };
+
+  const isAuth = () => {
+    return userStore.isAuth()
+  };
+
   return {
     // Properties
     user,
-    token,
     // Methods
     setUser,
-    setToken,
-    logout
+    logout,
+    signIn,
+    isAuth
   };
 }

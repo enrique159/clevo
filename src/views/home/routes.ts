@@ -5,6 +5,9 @@ export const HomeRoutes = [
     path: "/home",
     name: "Home",
     component: HomeModule,
+    meta: {
+      requiresAuth: true,
+    },
   }
 ]
 

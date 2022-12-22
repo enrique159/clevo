@@ -34,6 +34,7 @@
             class="w-100 password-custom"
             :feedback="false"
             toggleMask
+            autocomplete="on"
           />
           <label for="signInPassword">{{ $t("Login.SignIn.password") }}</label>
         </span>
@@ -52,9 +53,12 @@
         </div>
 
         <!-- LOGIN BUTTON -->
-        <Button class="signin-form__button-login" type="submit">{{
-          $t("Login.SignIn.signIn")
-        }}</Button>
+        <Button class="signin-form__button-login" type="submit" :loading="isLoading">
+          <i v-if="isLoading" class="pi pi-spinner pi-spin mr-2"></i>
+          <span>
+            {{$t("Login.SignIn.signIn")}}
+          </span>
+        </Button>
       </form>
     </div>
 
@@ -71,27 +75,60 @@
 </template>
 
 <script setup lang="ts">
+// Components
 import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher.vue";
+// Composables
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useMeta } from "vue-meta";
 import { useApp } from "@/composables/stores/useApp";
+import { useUser } from "@/composables/stores/useUser";
+import { Auth } from "@/app/auth/domain/interfaces";
+// Types
+import Exception from "@/app/shared/error/Exception";
 
+// Meta
 useMeta({
   title: "Inicia sesión",
   htmlAttrs: { lang: "en", amp: true },
 });
 
+// VALIDATION FORM
+const isLoading = ref(false);
 const user = reactive({
   email: "",
   password: "",
 });
 
 const { rememberSession } = useApp();
-
+const { signIn } = useUser();
 const router = useRouter();
-const validateForm = () => {
-  router.push("/home");
+
+const validateForm = async () => {
+  const credentianls: Auth = {
+    email: user.email,
+    password: user.password,
+  };
+
+  isLoading.value = true;
+  // create a delay to show the loading
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await signIn(credentianls)
+    .then((response) => {
+      router.push({ name: "Home" })
+    })
+    .catch((error) => {
+      if (error instanceof Exception) {
+        for (let err of error.errors) {
+          console.log(err);
+        }
+      } else {
+        console.log(error);
+      }
+    })
+    .finally(() => {
+      isLoading.value = false;
+    });
 }
 </script>
 

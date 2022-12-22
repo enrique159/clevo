@@ -6,4 +6,5 @@ export interface IPayload<T> {
   params?: IHttpSettings
   url?: string
   baseUrl?: string
+  auth?: boolean
 }
