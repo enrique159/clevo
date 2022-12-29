@@ -28,6 +28,9 @@ moment.locale('es')
 // Locales
 import i18n from '@/plugins/i18n'
 
+// Yup Locales
+import '@/plugins/yup'
+
 const app = createApp(App)
 
 PrimeVueConf(app)

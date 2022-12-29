@@ -9,6 +9,8 @@ import Home from "./pages/Home.i18n"
 
 // shared
 import General from "./shared/General.i18n"
+import Titles from "./shared/Titles.i18n"
+import Errors from "./shared/Errors.i18n"
 
 export default {
   // components
@@ -19,5 +21,9 @@ export default {
   ...Regions,
   ...Login,
   ...Home,
+  
+  // shared 
   ...General,
+  ...Titles,
+  ...Errors
 }

@@ -13,9 +13,13 @@ import BannerComp from './components/BannerComp.vue'
 // Composables
 import { useMeta } from "vue-meta";
 
+// Locales
+import i18n from '@/plugins/i18n';
+const { t } = i18n.global;
+
 // Define los metadatos de la página
 useMeta({
-  title: "Inicio",
+  title: t('Titles.Home'),
   htmlAttrs: { lang: "en", amp: true },
 })
 </script>

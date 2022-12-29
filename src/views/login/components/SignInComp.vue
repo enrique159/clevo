@@ -14,35 +14,39 @@
     <div class="signin-comp__form">
       <h5 class="mb-2 lh-b2">{{ $t("Login.SignIn.title") }}</h5>
       <p class="ts-b3 tw-regular mb-3">{{ $t("Login.SignIn.subtitle") }}</p>
-      <form class="signin-form" @submit.prevent="validateForm">
+      <form class="signin-form" @submit.prevent="onSubmit">
         <!-- EMAIL -->
-        <span class="p-float-label mb-3">
+        <span class="p-float-label">
           <InputText
             id="signInEmail"
             type="text"
             class="w-100 input-custom"
-            v-model="user.email"
+            :class="{ 'p-invalid': !emptyString(errorEmail) }"
+            v-model="email"
           />
           <label for="signInEmail">{{ $t("Login.SignIn.email") }}</label>
         </span>
+        <span class="tc-red-0 ts-b5 mb-5 pl-1">{{ $t(errorEmail) }}</span>
 
         <!-- PASSWORD -->
         <span class="p-float-label">
           <Password
             id="signInPassword"
-            v-model="user.password"
+            v-model="password"
             class="w-100 password-custom"
+            :class="{ 'p-invalid bc-red-0': !emptyString(errorPassword) }"
             :feedback="false"
             toggleMask
             autocomplete="on"
           />
           <label for="signInPassword">{{ $t("Login.SignIn.password") }}</label>
         </span>
+        <span class="tc-red-0 ts-b5 mb-5 pl-1">{{ $t(errorPassword, { min: passwordMinLength }) }}</span>
 
         <!-- REMEMBER CHECKER -->
-        <div class="d-flex justify-between">
+        <div class="d-flex justify-between mb-1">
           <div class="field-checkbox">
-            <Checkbox inputId="binary" v-model="rememberSession" :binary="true" />
+            <Checkbox inputId="binary" v-model="remember" :binary="true" />
             <label for="binary">{{ $t("Login.SignIn.remember") }}</label>
           </div>
 
@@ -59,6 +63,9 @@
             {{$t("Login.SignIn.signIn")}}
           </span>
         </Button>
+
+        <!-- ERROR FETCHING -->
+        <span class="ta-center ts-small tc-red-0">{{ $t(errorFetchResponse) }}</span>
       </form>
     </div>
 
@@ -77,53 +84,89 @@
 <script setup lang="ts">
 // Components
 import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher.vue";
+import { emptyString } from "@/utils/emptyString";
 // Composables
-import { reactive, ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { useMeta } from "vue-meta";
 import { useApp } from "@/composables/stores/useApp";
 import { useUser } from "@/composables/stores/useUser";
-import { Auth } from "@/app/auth/domain/interfaces";
+import { useForm } from 'vee-validate';
+import * as yup from 'yup';
 // Types
+import { Auth } from "@/app/auth/domain/interfaces";
 import Exception from "@/app/shared/error/Exception";
+import ErrorCode from "@/app/shared/error/errorCode";
 
-// Meta
-useMeta({
-  title: "Inicia sesión",
-  htmlAttrs: { lang: "en", amp: true },
+// VALIDATION SCHEMA
+const passwordMinLength = ref(8);
+const schema = yup.object({
+  email: yup.string().required().email(),
+  password: yup.string().required().min(passwordMinLength.value),
 });
 
 // VALIDATION FORM
-const isLoading = ref(false);
-const user = reactive({
-  email: "",
-  password: "",
+const { useFieldModel, errors, meta, handleSubmit } = useForm({
+  validationSchema: schema,
 });
+const [ email, password ] = useFieldModel(['email', 'password']);
 
-const { rememberSession } = useApp();
+// ERROR COMPUTED
+const errorEmail = computed(() => {
+  return meta.value.dirty && email.value != undefined ? errors.value.email ?? '' : '';
+})
+const errorPassword = computed(() => {
+  return meta.value.dirty && password.value != undefined ? errors.value.password ?? '' : '';
+})
+
+// SUBMIT FORM
+const onSubmit = handleSubmit((values) => {
+  fetchSignIn();
+})
+
+/*
+  ****** FETCHING SIGN IN ******
+*/
+
+const isLoading = ref(false);
+const errorFetchResponse = ref("");
+const { rememberSession, getRememberSession } = useApp();
 const { signIn } = useUser();
 const router = useRouter();
 
-const validateForm = async () => {
+const remember = ref<boolean>(true)
+remember.value = getRememberSession()
+
+// FETCH SIGN IN
+const fetchSignIn = async () => {
   const credentianls: Auth = {
-    email: user.email,
-    password: user.password,
+    email: email.value,
+    password: password.value,
   };
 
+  errorFetchResponse.value = "";
   isLoading.value = true;
   // create a delay to show the loading
   await new Promise((resolve) => setTimeout(resolve, 1000));
   await signIn(credentianls)
     .then((response) => {
+      rememberSession.value = remember.value.toString();
       router.push({ name: "Home" })
     })
     .catch((error) => {
       if (error instanceof Exception) {
         for (let err of error.errors) {
-          console.log(err);
+          if (err.code === ErrorCode.ERR0001.code)
+            errorFetchResponse.value = 'Login.SignIn.error.notFound';
+          else if (err.code === ErrorCode.ERR0017.code)
+            errorFetchResponse.value = 'Login.SignIn.error.invalidCredentials';
+          else if (err.code === ErrorCode.ERR0000.code)
+            errorFetchResponse.value = 'Error.interalServerError';
+          else
+            errorFetchResponse.value = 'Error.interalServerError';
         }
       } else {
         console.log(error);
+        errorFetchResponse.value = 'Error.interalServerError';
       }
     })
     .finally(() => {
@@ -175,7 +218,7 @@ const validateForm = async () => {
       flex-direction: column;
       justify-content: center;
       padding: 1rem 0 0;
-      row-gap: 1rem;
+      //row-gap: 1rem;
 
       &__button-login {
         width: 100%;

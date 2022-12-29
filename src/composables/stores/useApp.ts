@@ -13,11 +13,16 @@ export const useApp = () => {
     appStpre.setLocale(value);
   }
 
+  const getRememberSession = () => {
+    return rememberSession.value == 'true';
+  }
+
   return {
     // Properties
     rememberSession,
     locale,
     // Methods
+    getRememberSession,
     setRememberSession,
     setLocale
   }

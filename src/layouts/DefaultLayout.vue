@@ -7,6 +7,17 @@
 
 <script setup lang="ts">
 import SideBarMenu from '@/components/SideBarMenu/SideBarMenu.vue'
+import { useApp } from "@/composables/stores/useApp";
+import { useUser } from "@/composables/stores/useUser";
+
+const { getRememberSession } = useApp();
+const { logout } = useUser();
+
+if(!getRememberSession()) {
+  window.addEventListener('beforeunload', () => {
+    logout();
+  }, false)
+}
 </script>
 
 <style lang="scss" scoped>

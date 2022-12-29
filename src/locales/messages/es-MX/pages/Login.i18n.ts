@@ -10,6 +10,10 @@ export default {
       signIn: "Iniciar Sesión",
       dontHaveAccount: "¿No tienes una cuenta?",
       signUp: "Regístrate",
+      error: {
+        notFound: "No podemos encontrar una cuenta con este correo electrónico.",
+        invalidCredentials: "El correo electrónico o la contraseña que ingresaste es incorrecta.",
+      }
     }
   }
 }

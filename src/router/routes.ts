@@ -4,7 +4,8 @@ import DefaultLayout from "@/layouts/DefaultLayout.vue";
 // Modules
 import { LoginRoutes } from "@/views/login/routes";
 import { HomeRoutes } from "@/views/home/routes";
-import { FacturasRoutes } from "@/views/facturas/routes";
+import { BillsRoutes } from "@/views/bills/routes";
+import { ProductsRoutes } from "@/views/products/routes";
 
 const routes = [
   {
@@ -12,9 +13,11 @@ const routes = [
     name: "DefaultLayout",
     redirect: "/home",
     component: DefaultLayout,
+    meta: { requiresAuth: true },
     children: [
       ...HomeRoutes,
-      ...FacturasRoutes,
+      ...BillsRoutes,
+      ...ProductsRoutes,
     ]
   },
   ...LoginRoutes,

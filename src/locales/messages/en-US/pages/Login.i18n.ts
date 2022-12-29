@@ -10,6 +10,10 @@ export default {
       signIn: "Sign in",
       dontHaveAccount: "Don't have an account?",
       signUp: "Sign up",
+      error: {
+        notFound: "We can't find an account with this email.",
+        invalidCredentials: "The email or password you entered is incorrect.",
+      }
     }
   }
 }
