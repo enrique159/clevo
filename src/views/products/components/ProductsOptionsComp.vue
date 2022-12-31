@@ -1,11 +1,10 @@
 <template>
-  <div class="home-options-comp">
-    <h6>{{ $t('Home.Options.welcomeLabel', { name: 'Enrique' }) }}</h6>
+  <div class="products-options-comp">
+    <h6>{{ $t('Products.Options.welcomeLabel', { name: 'Enrique' }) }}</h6>
 
     <div class="d-flex c-gap-1" v-if="!smallDevice">
-      <Button class="button-outline-custom br-5">{{ $t('Home.Options.newClient') }}</Button>
-      <Button class="button-outline-custom br-5">{{ $t('Home.Options.newSale') }}</Button>
-      <Button class="button-custom br-5">{{ $t('Home.Options.newBill') }}</Button>
+      <Button class="button-outline-custom br-5">{{ $t('Products.Options.newCategory') }}</Button>
+      <Button class="button-custom br-5">{{ $t('Products.Options.newProduct') }}</Button>
     </div>
 
     <Button
@@ -25,9 +24,8 @@
       class="tiered-menu-custom ff-primary"
       defaultActiveItem="#"
       :model="[
-        { label: $t('Home.Options.newBill'), icon: 'ti ti-file', command: () => { }, },
-        { label: $t('Home.Options.newSale'), icon: 'ti ti-currency-dollar', command: () => { }, },
-        { label: $t('Home.Options.newClient'), icon: 'ti ti-users', command: () => { }, },
+        { label: $t('Products.Options.newCategory'), icon: 'ti ti-category', command: () => { }, },
+        { label: $t('Products.Options.newProduct'), icon: 'ti ti-assembly', command: () => { }, },
       ]"
       :popup="true"
     />
@@ -52,7 +50,7 @@ const smallDevice = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-.home-options-comp {
+.products-options-comp {
   @include flex-between;
   padding: 1rem 0;
 }

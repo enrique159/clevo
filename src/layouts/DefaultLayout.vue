@@ -1,12 +1,16 @@
 <template>
   <div class="default-layout">
     <SideBarMenu />
-    <router-view></router-view>
+    <div class="w-100">
+      <DefaultHeader />
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import SideBarMenu from '@/components/SideBarMenu/SideBarMenu.vue'
+import DefaultHeader from '@/components/Headers/DefaultHeader.vue'
 import { useApp } from "@/composables/stores/useApp";
 import { useUser } from "@/composables/stores/useUser";
 

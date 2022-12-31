@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-end my-4">
+  <div class="d-flex justify-end my-4 mr-3">
     <SearchBar :placeholder="$t('General.searchBarPlaceholder')" />
     <Avatar
       id="avatar-profile"
@@ -17,8 +17,8 @@
       class="tiered-menu-custom ff-primary"
       defaultActiveItem="#"
       :model="[
-        { label: $t('General.myAccount'), icon: 'pi pi-fw pi-user', command: () => { }, },
-        { label: $t('General.signOut'), icon: 'pi pi-fw pi-sign-out', command: () => logoutUser(), },
+        { label: $t('General.myAccount'), icon: 'ti ti-user', command: () => { }, },
+        { label: $t('General.signOut'), icon: 'ti ti-logout', command: () => logoutUser(), },
       ]"
       :popup="true"
     />
