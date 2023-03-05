@@ -184,3 +184,18 @@
 .r-gap-1 { row-gap: 0.5rem; }
 .r-gap-2 { row-gap: 1rem; }
 .r-gap-3 { row-gap: 2rem; }
+
+
+// OVERFLOW
+.o-hidden { overflow: hidden; }
+.o-auto { overflow: auto; }
+.o-scroll { overflow: scroll; }
+.o-visible { overflow: visible; }
+.o-x-hidden { overflow-x: hidden; }
+.o-x-auto { overflow-x: auto; }
+.o-x-scroll { overflow-x: scroll; }
+.o-x-visible { overflow-x: visible; }
+.o-y-hidden { overflow-y: hidden; }
+.o-y-auto { overflow-y: auto; }
+.o-y-scroll { overflow-y: scroll; }
+.o-y-visible { overflow-y: visible; }

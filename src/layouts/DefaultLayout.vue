@@ -1,7 +1,7 @@
 <template>
   <div class="default-layout">
     <SideBarMenu />
-    <div class="w-100">
+    <div class="w-100 o-y-auto">
       <DefaultHeader />
       <router-view></router-view>
     </div>

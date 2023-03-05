@@ -1,4 +1,4 @@
-// import NotFoundView from "@/views/NotFoundView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 
 // Modules
@@ -13,7 +13,7 @@ const routes = [
     name: "DefaultLayout",
     redirect: "/home",
     component: DefaultLayout,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     children: [
       ...HomeRoutes,
       ...BillsRoutes,
@@ -21,17 +21,12 @@ const routes = [
     ]
   },
   ...LoginRoutes,
-  // {
-  //   path: "/design-system",
-  //   name: "DesignSystem",
-  //   component: DesignSystemView
-  // },
   // 404
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: "NotFound",
-  //   component: NotFoundView
-  // }
+  {
+    path: '/:pathMatch(.*)*',
+    name: "NotFound",
+    component: NotFoundView
+  }
 ];
 
 export default routes
