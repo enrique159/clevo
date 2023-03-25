@@ -18,6 +18,12 @@
           </router-link>
         </li>
         <li>
+          <router-link to="/sales" :class="{ active: menu.sales }" @click="selectMenuOption('sales')">
+            <SalesIcon class="icon" :white="menu.sales" />
+            <span>{{ $t('SideBarMenu.sales') }}</span>
+          </router-link>
+        </li>
+        <li>
           <router-link to="/" :class="{ active: menu.clients }" @click="selectMenuOption('clients')">
             <ClientsIcon class="icon" :white="menu.clients" />
             <span>{{ $t('SideBarMenu.clients') }}</span>
@@ -27,12 +33,6 @@
           <router-link to="/products" :class="{ active: menu.products }" @click="selectMenuOption('products')">
             <ProductsIcon class="icon" :white="menu.products" />
             <span>{{ $t('SideBarMenu.products') }}</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" :class="{ active: menu.sales }" @click="selectMenuOption('sales')">
-            <SalesIcon class="icon" :white="menu.sales" />
-            <span>{{ $t('SideBarMenu.sales') }}</span>
           </router-link>
         </li>
         <li>
@@ -78,6 +78,12 @@
           </router-link>
         </li>
         <li>
+          <router-link to="/sales" :class="{ active: menu.sales }" @click="selectMenuOption('sales')">
+            <SalesIcon class="icon" :white="menu.sales" />
+            <span>{{ $t('SideBarMenu.sales') }}</span>
+          </router-link>
+        </li>
+        <li>
           <router-link to="/" :class="{ active: menu.clients }" @click="selectMenuOption('clients')">
             <ClientsIcon class="icon" :white="menu.clients" />
             <span>{{ $t('SideBarMenu.clients') }}</span>
@@ -87,12 +93,6 @@
           <router-link to="/products" :class="{ active: menu.products }" @click="selectMenuOption('products')">
             <ProductsIcon class="icon" :white="menu.products" />
             <span>{{ $t('SideBarMenu.products') }}</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/" :class="{ active: menu.sales }" @click="selectMenuOption('sales')">
-            <SalesIcon class="icon" :white="menu.sales" />
-            <span>{{ $t('SideBarMenu.sales') }}</span>
           </router-link>
         </li>
         <li>
