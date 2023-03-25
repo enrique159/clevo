@@ -1,5 +1,5 @@
-import ProductsModule from './ProductsModule.vue';
-import ProductsView from './views/ProductsView.vue';
+import ProductsModule from './ProductsModule.vue'
+import ProductsView from './views/ProductsView.vue'
 
 export const ProductsRoutes = [
   {
@@ -13,7 +13,7 @@ export const ProductsRoutes = [
         component: ProductsView,
       },
     ],
-  }
+  },
 ]
 
-export default ProductsRoutes;
+export default ProductsRoutes

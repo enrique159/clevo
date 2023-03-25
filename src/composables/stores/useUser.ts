@@ -1,24 +1,28 @@
-import { storeToRefs } from "pinia";
-import { useUserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia"
+import { useUserStore } from "@/stores/userStore"
 import { User } from '@/app/modules/Users/domain/interfaces'
-import { Auth } from "@/app/auth/domain/interfaces";
+import { Auth } from "@/app/auth/domain/interfaces"
 import decode from 'jwt-decode'
 
 export const useUser = () => {
-  const userStore = useUserStore();
-  const { user, token } = storeToRefs(userStore);
+  const userStore = useUserStore()
+  const { user, token } = storeToRefs(userStore)
 
   // Methods
+  // SET USER: Hace set del objeto user al store
   const setUser = (value: User) => {
     user.value = value
-  };
+  }
+  // SET TOKEN: Hace set del token al store
   const setToken = (value: string) => {
     token.value = value
-  };
+  }
+  // LOGOUT: Limpia el store
   const logout = () => {
     userStore.logout()
-  };
+  }
 
+  // VALIDATE TOKEN: Valida si el token es válido
   const validateToken = () => {
     if (!token.value) return false
 
@@ -35,12 +39,14 @@ export const useUser = () => {
   }
 
   // Actions
+  // SIGN IN: Hace el login del usuario
   const signIn = (credentials: Auth) => {
     return userStore.signIn(credentials)
-  };
+  }
+  // IS AUTH: Valida si el usuario está autenticado
   const isAuth = () => {
     return userStore.isAuth()
-  };
+  }
 
   return {
     // Properties
@@ -53,6 +59,6 @@ export const useUser = () => {
     validateToken,
     // Actions
     signIn,
-    isAuth
-  };
+    isAuth,
+  }
 }

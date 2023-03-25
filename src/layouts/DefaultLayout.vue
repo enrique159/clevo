@@ -3,7 +3,7 @@
     <SideBarMenu />
     <div class="w-100 o-y-auto">
       <DefaultHeader />
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
@@ -11,15 +11,15 @@
 <script setup lang="ts">
 import SideBarMenu from '@/components/SideBarMenu/SideBarMenu.vue'
 import DefaultHeader from '@/components/Headers/DefaultHeader.vue'
-import { useApp } from "@/composables/stores/useApp";
-import { useUser } from "@/composables/stores/useUser";
+import { useApp } from "@/composables/stores/useApp"
+import { useUser } from "@/composables/stores/useUser"
 
-const { getRememberSession } = useApp();
-const { logout } = useUser();
+const { getRememberSession } = useApp()
+const { logout } = useUser()
 
 if(!getRememberSession()) {
   window.addEventListener('beforeunload', () => {
-    logout();
+    logout()
   }, false)
 }
 </script>

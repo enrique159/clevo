@@ -5,15 +5,19 @@
         to="#"
         class="signin-comp__logo"
       >
-        <img src="@/assets/logo.svg" alt="clevo" />
+        <img src="@/assets/logo.svg" alt="clevo">
       </router-link>
 
       <LocaleSwitcher />
     </div>
 
     <div class="signin-comp__form">
-      <h5 class="mb-2 lh-b2">{{ $t("Login.SignIn.title") }}</h5>
-      <p class="ts-b3 tw-regular mb-3">{{ $t("Login.SignIn.subtitle") }}</p>
+      <h5 class="mb-2 lh-b2">
+        {{ $t("Login.SignIn.title") }}
+      </h5>
+      <p class="ts-b3 tw-regular mb-3">
+        {{ $t("Login.SignIn.subtitle") }}
+      </p>
       <form class="signin-form" @submit.prevent="onSubmit">
         <!-- EMAIL -->
         <span class="p-float-label">
@@ -36,7 +40,7 @@
             class="w-100 password-custom"
             :class="{ 'p-invalid bc-red-0': !emptyString(errorPassword) }"
             :feedback="false"
-            toggleMask
+            toggle-mask
             autocomplete="on"
           />
           <label for="signInPassword">{{ $t("Login.SignIn.password") }}</label>
@@ -46,7 +50,7 @@
         <!-- REMEMBER CHECKER -->
         <div class="d-flex justify-between mb-1">
           <div class="field-checkbox">
-            <Checkbox inputId="binary" v-model="remember" :binary="true" />
+            <Checkbox input-id="binary" v-model="remember" :binary="true" />
             <label for="binary">{{ $t("Login.SignIn.remember") }}</label>
           </div>
 
@@ -58,9 +62,9 @@
 
         <!-- LOGIN BUTTON -->
         <Button class="signin-form__button-login" type="submit" :loading="isLoading">
-          <i v-if="isLoading" class="pi pi-spinner pi-spin mr-2"></i>
+          <i v-if="isLoading" class="pi pi-spinner pi-spin mr-2" />
           <span>
-            {{$t("Login.SignIn.signIn")}}
+            {{ $t("Login.SignIn.signIn") }}
           </span>
         </Button>
 
@@ -83,95 +87,92 @@
 
 <script setup lang="ts">
 // Components
-import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher.vue";
-import { emptyString } from "@/utils/emptyString";
+import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher.vue"
+import { emptyString } from "@/utils/emptyString"
 // Composables
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import { useApp } from "@/composables/stores/useApp";
-import { useUser } from "@/composables/stores/useUser";
-import { useForm } from 'vee-validate';
-import * as yup from 'yup';
+import { ref, computed } from "vue"
+import { useRouter } from "vue-router"
+import { useApp } from "@/composables/stores/useApp"
+import { useUser } from "@/composables/stores/useUser"
+import { useForm } from 'vee-validate'
+import * as yup from 'yup'
 // Types
-import { Auth } from "@/app/auth/domain/interfaces";
-import Exception from "@/app/shared/error/Exception";
-import ErrorCode from "@/app/shared/error/errorCode";
+import { Auth } from "@/app/auth/domain/interfaces"
+import Exception from "@/app/shared/error/Exception"
+import ErrorCode from "@/app/shared/error/errorCode"
 
 // VALIDATION SCHEMA
-const passwordMinLength = ref(8);
+const passwordMinLength = ref(8)
 const schema = yup.object({
   email: yup.string().required().email(),
   password: yup.string().required().min(passwordMinLength.value),
-});
+})
 
 // VALIDATION FORM
 const { useFieldModel, errors, meta, handleSubmit } = useForm({
   validationSchema: schema,
-});
-const [ email, password ] = useFieldModel(['email', 'password']);
+})
+const [ email, password ] = useFieldModel(['email', 'password'])
 
 // ERROR COMPUTED
 const errorEmail = computed(() => {
-  return meta.value.dirty && email.value != undefined ? errors.value.email ?? '' : '';
+  return meta.value.dirty && email.value != undefined ? errors.value.email ?? '' : ''
 })
 const errorPassword = computed(() => {
-  return meta.value.dirty && password.value != undefined ? errors.value.password ?? '' : '';
+  return meta.value.dirty && password.value != undefined ? errors.value.password ?? '' : ''
 })
 
 // SUBMIT FORM
-const onSubmit = handleSubmit((values) => {
-  fetchSignIn();
-})
+const onSubmit = handleSubmit(() => fetchSignIn())
 
 /*
   ****** FETCHING SIGN IN ******
 */
 
-const isLoading = ref(false);
-const errorFetchResponse = ref("");
-const { rememberSession, getRememberSession } = useApp();
-const { signIn } = useUser();
-const router = useRouter();
+const isLoading = ref(false)
+const errorFetchResponse = ref("")
+const { rememberSession, getRememberSession } = useApp()
+const { signIn } = useUser()
+const router = useRouter()
 
 const remember = ref<boolean>(true)
 remember.value = getRememberSession()
 
 // FETCH SIGN IN
-const fetchSignIn = async () => {
+const fetchSignIn = async() => {
   const credentianls: Auth = {
     email: email.value,
     password: password.value,
-  };
+  }
 
-  errorFetchResponse.value = "";
-  isLoading.value = true;
+  errorFetchResponse.value = ""
+  isLoading.value = true
   // create a delay to show the loading
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 1000))
   await signIn(credentianls)
-    .then((response) => {
-      rememberSession.value = remember.value.toString();
+    .then(() => {
+      rememberSession.value = remember.value.toString()
       router.push({ name: "Home" })
     })
     .catch((error) => {
       if (error instanceof Exception) {
         for (let err of error.errors) {
           if (err.code === ErrorCode.ERR0001.code)
-            errorFetchResponse.value = 'Login.SignIn.error.notFound';
+            errorFetchResponse.value = 'Login.SignIn.error.notFound'
           else if (err.code === ErrorCode.ERR0017.code)
-            errorFetchResponse.value = 'Login.SignIn.error.invalidCredentials';
+            errorFetchResponse.value = 'Login.SignIn.error.invalidCredentials'
           else if (err.code === ErrorCode.ERR0000.code)
-            errorFetchResponse.value = 'Error.interalServerError';
+            errorFetchResponse.value = 'Error.interalServerError'
           else
-            errorFetchResponse.value = 'Error.interalServerError';
+            errorFetchResponse.value = 'Error.interalServerError'
         }
       } else {
-        console.log(error);
-        errorFetchResponse.value = 'Error.interalServerError';
+        errorFetchResponse.value = 'Error.interalServerError'
       }
     })
     .finally(() => {
-      isLoading.value = false;
-    });
+      isLoading.value = false
+    })
 }
 </script>
 

@@ -1,25 +1,25 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router"
 
-import routes from "./routes";
+import routes from "./routes"
 
-import { useUser } from "@/composables/stores/useUser";
+import { useUser } from "@/composables/stores/useUser"
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
 router.beforeEach((to, from, next) => {
-  const { validateToken } = useUser();
+  const { validateToken } = useUser()
   if (to.name === "Login" && validateToken()) {
-    next({ name: "Home" });
+    next({ name: "Home" })
   }
   else if (to.meta.requiresAuth && !validateToken()) {
-    next({ name: "Login" });
+    next({ name: "Login" })
   }
   else {
     next()
   }
 })
 
-export default router;
+export default router

@@ -3,9 +3,15 @@
     <h6>{{ $t('Home.Options.welcomeLabel', { name: 'Enrique' }) }}</h6>
 
     <div class="d-flex c-gap-1" v-if="!smallDevice">
-      <Button class="button-outline-custom br-5">{{ $t('Home.Options.newClient') }}</Button>
-      <Button class="button-outline-custom br-5">{{ $t('Home.Options.newSale') }}</Button>
-      <Button class="button-custom br-5">{{ $t('Home.Options.newBill') }}</Button>
+      <Button class="button-outline-custom br-5">
+        {{ $t('Home.Options.newClient') }}
+      </Button>
+      <Button class="button-outline-custom br-5">
+        {{ $t('Home.Options.newSale') }}
+      </Button>
+      <Button class="button-custom br-5">
+        {{ $t('Home.Options.newBill') }}
+      </Button>
     </div>
 
     <Button
@@ -16,14 +22,14 @@
       @click="toggleCreateNew"
     >
       Crear Nuevo
-      <ChevronDownIcon class="ml-1" size="18"/>
+      <ChevronDownIcon class="ml-1" size="18" />
     </Button>
 
     <TieredMenu
       id="overlay_tmenu_create_new"
       ref="createNewMenu"
       class="tiered-menu-custom ff-primary"
-      defaultActiveItem="#"
+      default-active-item="#"
       :model="[
         { label: $t('Home.Options.newBill'), icon: 'ti ti-file', command: () => { }, },
         { label: $t('Home.Options.newSale'), icon: 'ti ti-currency-dollar', command: () => { }, },
@@ -35,20 +41,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed } from "vue"
 import { useWindowSize } from '@vueuse/core'
-import { ChevronDownIcon } from "vue-tabler-icons";
+import { ChevronDownIcon } from "vue-tabler-icons"
 
 const { width } = useWindowSize()
-const createNewMenu = ref<any>(null);
+const createNewMenu = ref<any>(null)
 
 const toggleCreateNew = (event: any) => {
-  createNewMenu.value.toggle(event);
-};
+  createNewMenu.value.toggle(event)
+}
 
 const smallDevice = computed(() => {
-  return width.value < 768;
-});
+  return width.value < 768
+})
 </script>
 
 <style lang="scss" scoped>
