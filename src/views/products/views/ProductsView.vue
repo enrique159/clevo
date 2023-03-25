@@ -125,9 +125,11 @@ import ProductsOptionsComp from "../components/ProductsOptionsComp.vue";
 import { ref, onMounted } from "vue";
 import ProductService from "@/common/ProductService";
 
+type LayoutType = "list" | "grid" | undefined;
+
 const products = ref();
 const productService = ref(new ProductService());
-const layout = ref("grid");
+const layout = ref<LayoutType>("grid");
 const sortKey = ref();
 const sortOrder = ref();
 const sortField = ref();
