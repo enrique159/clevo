@@ -1,13 +1,17 @@
 <template>
   <div class="banner-comp">
     <div class="banner-comp__icon w-1">
-      <img src="@/assets/announcement.png" alt="announcement" />
+      <img src="@/assets/announcement.png" alt="announcement">
     </div>
     <div class="banner-comp__content w-100">
-      <h6 class="ts-b1 tw-semi-bold tc-white-0 mb-2">{{ bannerValues.title }}</h6>
-      <p class="tc-white-0 mb-2">{{ bannerValues.subtitle }}</p>
+      <h6 class="ts-b1 tw-semi-bold tc-white-0 mb-2">
+        {{ bannerValues.title }}
+      </h6>
+      <p class="tc-white-0 mb-2">
+        {{ bannerValues.subtitle }}
+      </p>
     </div>
-    <Button class="button-custom bg-white-0 bc-white-0 tc-blue-0 br-4" style="width: 180px;">
+    <Button class="button-custom bg-white-0 bc-white-0 tc-blue-0 br-4" :style="{ width: '180px' }">
       <span class="w-100 ta-center">{{ bannerValues.cta }}</span>
     </Button>
 
@@ -18,13 +22,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive } from "vue"
 
 const bannerValues = reactive({
   title: "¡Nueva promoción!",
   subtitle: "Compra un producto y llévate otro gratis",
   cta: "Ver promoción",
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -33,7 +37,7 @@ const bannerValues = reactive({
   width: 100%;
   height: 100px;
   background: rgb(64,37,227);
-  background: linear-gradient(90deg, rgba(64,37,227,1) 0%, rgba(46,159,222,1) 100%);  
+  background: linear-gradient(90deg, rgba(64,37,227,1) 0%, rgba(46,159,222,1) 100%);
   border-radius: $border-radius-3;
   padding: 1rem 2rem 1rem 2rem;
   position: relative;

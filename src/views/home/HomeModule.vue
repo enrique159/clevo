@@ -7,11 +7,11 @@
 <script setup lang="ts">
 import HomeOptionsComp from './components/HomeOptionsComp.vue'
 // Composables
-import { useMeta } from "vue-meta";
+import { useMeta } from "vue-meta"
 
 // Locales
-import i18n from '@/plugins/i18n';
-const { t } = i18n.global;
+import i18n from '@/plugins/i18n'
+const { t } = i18n.global
 
 // Define los metadatos de la página
 useMeta({

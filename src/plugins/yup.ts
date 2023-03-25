@@ -1,4 +1,4 @@
-import { setLocale } from 'yup';
+import { setLocale } from 'yup'
 
 const yup = setLocale({
   mixed: {
@@ -12,9 +12,9 @@ const yup = setLocale({
   string: {
     email: 'Error.email',
     url: 'Error.url',
-    min: params => 'Error.min',
-    max: params => 'Error.max',
-  }
-});
+    min: (params) => 'Error.min',
+    max: (params) => 'Error.max',
+  },
+})
 
 export default yup

@@ -8,7 +8,7 @@
     >
       ES
     </button>
-    <div class="locale-switcher__divider"></div>
+    <div class="locale-switcher__divider" />
     <button
       class="locale-switcher__button"
       :class="{ 'locale-switcher__button--active': currentLocale === Locales.EN }"
@@ -21,19 +21,19 @@
 </template>
 
 <script setup lang="ts">
-import i18n from "@/plugins/i18n";
-import { Locales } from "@/locales/locales.d";
-import { useApp } from "@/composables/stores/useApp";
-import { computed } from "vue";
+import i18n from "@/plugins/i18n"
+import { Locales } from "@/locales/locales.d"
+import { useApp } from "@/composables/stores/useApp"
+import { computed } from "vue"
 
-const { locale, setLocale } = useApp();
+const { setLocale } = useApp()
 
 const changeLocale = (locale: Locales) => {
-  i18n.global.locale = locale;
-  setLocale(locale);
-};
+  i18n.global.locale = locale
+  setLocale(locale)
+}
 
-const currentLocale = computed(() => i18n.global.locale);
+const currentLocale = computed(() => i18n.global.locale)
 </script>
 
 <style lang="scss" scoped>

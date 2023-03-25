@@ -1,5 +1,5 @@
-import LoginModule from './LoginModule.vue';
-import SignInView from './views/SignInView.vue';
+import LoginModule from './LoginModule.vue'
+import SignInView from './views/SignInView.vue'
 
 export const LoginRoutes = [
   {
@@ -13,8 +13,8 @@ export const LoginRoutes = [
         name: "SignIn",
         component: SignInView,
       },
-    ]
-  }
+    ],
+  },
 ]
 
-export default LoginRoutes;
+export default LoginRoutes

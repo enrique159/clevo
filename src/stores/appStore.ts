@@ -20,6 +20,6 @@ export const useAppStore = defineStore({
     },
     setLocale(value: string) {
       this.locale = value
-    }
-  }
+    },
+  },
 })

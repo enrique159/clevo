@@ -1,19 +1,19 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios'
-import { useUser } from '@/composables/stores/useUser';
+import { useUser } from '@/composables/stores/useUser'
 
-export const useFetch = async (request: requestFetch) => {
+export const useFetch = async(request: requestFetch) => {
   const { url, method, body } = request
   const { token } = useUser()
   let response: responseFetch = {
     status: 0,
-    data: {}
+    data: {},
   }
 
   const instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL as string ?? '',
     headers: {
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${token}`
+      'authorization': `Bearer ${token}`,
     },
   })
 

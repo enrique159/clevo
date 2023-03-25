@@ -1,20 +1,20 @@
-import { storeToRefs } from 'pinia';
-import { useAppStore } from '@/stores/appStore';
+import { storeToRefs } from 'pinia'
+import { useAppStore } from '@/stores/appStore'
 
 export const useApp = () => {
-  const appStpre = useAppStore();
-  const { rememberSession, locale } = storeToRefs(appStpre);
+  const appStore = useAppStore()
+  const { rememberSession, locale } = storeToRefs(appStore)
 
   const setRememberSession = (value: boolean) => {
-    appStpre.setRememberSession(value);
+    appStore.setRememberSession(value)
   }
 
   const setLocale = (value: string) => {
-    appStpre.setLocale(value);
+    appStore.setLocale(value)
   }
 
   const getRememberSession = () => {
-    return rememberSession.value == 'true';
+    return rememberSession.value == 'true'
   }
 
   return {
@@ -24,6 +24,6 @@ export const useApp = () => {
     // Methods
     getRememberSession,
     setRememberSession,
-    setLocale
+    setLocale,
   }
 }

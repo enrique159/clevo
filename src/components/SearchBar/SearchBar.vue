@@ -6,9 +6,10 @@
 </template>
 
 <script setup lang="ts">
+//eslint-disable-next-line
 const { placeholder = "" } = defineProps<{
   placeholder?: string;
-}>();
+}>()
 </script>
 
 <style lang="scss" scoped>

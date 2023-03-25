@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar-menu">
     <router-link to="/" class="side-bar-menu__logo">
-      <img src="@/assets/logo.svg" alt="clevo" />
+      <img src="@/assets/logo.svg" alt="clevo">
     </router-link>
     <div class="side-bar-menu__menu">
       <ul>
@@ -61,7 +61,7 @@
 
   <Sidebar class="side-bar-menu-sm" v-model:visible="toggleMenu">
     <router-link to="/" class="side-bar-menu-sm__logo">
-      <img src="@/assets/logo.svg" alt="clevo" />
+      <img src="@/assets/logo.svg" alt="clevo">
     </router-link>
     <div class="side-bar-menu-sm__menu">
       <ul>
@@ -117,20 +117,20 @@
 </template>
 
 <script setup lang="ts">
-import LocaleSwitcher from '@/components/LocaleSwitcher/LocaleSwitcher.vue';
-import HomeIcon from "@/assets/custom/HomeIcon.vue";
-import BillsIcon from "@/assets/custom/BillsIcon.vue";
-import ClientsIcon from "@/assets/custom/ClientsIcon.vue";
-import ProductsIcon from "@/assets/custom/ProductsIcon.vue";
-import SalesIcon from "@/assets/custom/SalesIcon.vue";
-import CoinsIcon from "@/assets/custom/CoinsIcon.vue";
-import SettingsIcon from "@/assets/custom/SettingsIcon.vue";
-import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import LocaleSwitcher from '@/components/LocaleSwitcher/LocaleSwitcher.vue'
+import HomeIcon from "@/assets/custom/HomeIcon.vue"
+import BillsIcon from "@/assets/custom/BillsIcon.vue"
+import ClientsIcon from "@/assets/custom/ClientsIcon.vue"
+import ProductsIcon from "@/assets/custom/ProductsIcon.vue"
+import SalesIcon from "@/assets/custom/SalesIcon.vue"
+import CoinsIcon from "@/assets/custom/CoinsIcon.vue"
+import SettingsIcon from "@/assets/custom/SettingsIcon.vue"
+import { reactive, ref } from "vue"
+import { useRouter } from "vue-router"
 
 type options = 'home' | 'bills' | 'clients' | 'products' | 'sales' | 'coins' | 'settings';
 
-const toggleMenu = ref(false);
+const toggleMenu = ref(false)
 const menu = reactive({
   home: true,
   bills: false,
@@ -139,53 +139,53 @@ const menu = reactive({
   sales: false,
   coins: false,
   settings: false,
-});
+})
 
 const selectMenuOption = (option: options) => {
-  menu.home = false;
-  menu.bills = false;
-  menu.clients = false;
-  menu.products = false;
-  menu.sales = false;
-  menu.coins = false;
-  menu.settings = false;
-  menu[option] = true;
-};
+  menu.home = false
+  menu.bills = false
+  menu.clients = false
+  menu.products = false
+  menu.sales = false
+  menu.coins = false
+  menu.settings = false
+  menu[option] = true
+}
 
 const showMenu = () => {
-  toggleMenu.value = !toggleMenu.value;
-};
+  toggleMenu.value = !toggleMenu.value
+}
 
 // GET THE CURRENT ROUTE
-const router = useRouter();
-const currentRoute = router.currentRoute.value.path;
+const router = useRouter()
+const currentRoute = router.currentRoute.value.path
 
 // SET THE MENU OPTION BASED ON THE CURRENT ROUTE
 switch (currentRoute) {
-  case '/home':
-    selectMenuOption('home');
-    break;
-  case '/bills':
-    selectMenuOption('bills');
-    break;
-  case '/clients':
-    selectMenuOption('clients');
-    break;
-  case '/products':
-    selectMenuOption('products');
-    break;
-  case '/sales':
-    selectMenuOption('sales');
-    break;
-  case '/coins':
-    selectMenuOption('coins');
-    break;
-  case '/settings':
-    selectMenuOption('settings');
-    break;
-  default:
-    selectMenuOption('home');
-    break;
+case '/home':
+  selectMenuOption('home')
+  break
+case '/bills':
+  selectMenuOption('bills')
+  break
+case '/clients':
+  selectMenuOption('clients')
+  break
+case '/products':
+  selectMenuOption('products')
+  break
+case '/sales':
+  selectMenuOption('sales')
+  break
+case '/coins':
+  selectMenuOption('coins')
+  break
+case '/settings':
+  selectMenuOption('settings')
+  break
+default:
+  selectMenuOption('home')
+  break
 }
 
 </script>
@@ -211,7 +211,7 @@ switch (currentRoute) {
 .side-bar-menu {
   background-color: $color-white-0;
   width: 300px;
-  height: 100%; 
+  height: 100%;
   padding: 2rem 5rem 2rem 3rem;
 
   &__logo {
